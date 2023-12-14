@@ -13,10 +13,13 @@ def gen(camera):
         frame = camera.get_frame()
         yield (b'--frame\r\n'
                b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
-@app.route('/video_feed')
-def video_feed():
-    return Response(gen(VideoCamera()),
+@app.route('/video_feed/<feed_type>')
+def video_feed(feed_type):
+    if feed_type == 'camera':
+        return Response(gen(VideoCamera()),
                     mimetype='multipart/x-mixed-replace; boundary=frame')
+
+
 if __name__ == '__main__':
     # defining server ip address and port
     app.run(host='0.0.0.0',port='5000', debug=True)

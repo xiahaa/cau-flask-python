@@ -1,17 +1,38 @@
+<!DOCTYPE html>
 <html>
-  <head>
-    <title>Mod1</title>
-    <style>
-	img {
-  	display: block;
-  	margin-left: auto;
-  	margin-right: auto;
-	width: 35%
-	}
-    </style>
-  </head>
-  <body>
-    <h1 align="center">Video Streaming Demonistration</h1>
-    <img id="bg" class="center" src="{{ url_for('video_feed') }}">
-  </body>
+<head>
+<style>
+* {
+  box-sizing: border-box;
+}
+
+.img-container {
+  float: left;
+  width: 30%;
+  padding: 5px;
+}
+
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+</style>
+</head>
+<body>
+
+<h1>Camera Object Detection</h1>
+
+<div class="clearfix">
+  <div class="img-container">
+        <p align="center">Camera stream 1</p>
+        <img src="{{ url_for('video_feed', feed_type='camera') }}" class="center"  style="border:1px solid black;width:100%" alt="Camera stream 1">
+  </div>
+  <!-- <div class="img-container">
+        <p align="center">YOLO stream 1</p>
+        <img src="{{ url_for('video_feed', feed_type='yolo', device=0) }}" class="center"  style="border:1px solid black;width:100%" alt="YOLO Stream 1">
+  </div> -->
+</div>
+
+</body>
 </html>
